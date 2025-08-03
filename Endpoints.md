@@ -1,0 +1,33 @@
+# API Endpoints
+
+## Authentication
+
+- **POST** `/api/v1/auth/signup` — User registration
+- **POST** `/api/v1/auth/login` — User login
+- **GET** `/api/v1/auth/logout` — User logout
+
+## Users (Protected)
+*These endpoints require an authenticated user.*
+
+- **GET** `/api/v1/users/me` — Get current user's profile
+- **PATCH** `/api/v1/users/updateMe` — Update current user's information
+- **DELETE** `/api/v1/users/deleteMe` — Deactivate current user's account
+
+## Users (Manager Only)
+*These endpoints require an authenticated user with the manager role.*
+
+- **GET** `/api/v1/users` — Get all users
+- **POST** `/api/v1/users` — Create a new user
+- **GET** `/api/v1/users/:id` — Get a user by ID
+- **PATCH** `/api/v1/users/:id` — Update a user by ID
+- **DELETE** `/api/v1/users/:id` — Delete a user by ID
+
+## Teams (Protected)
+*These endpoints require an authenticated user. Some actions are role-restricted.*
+
+- **GET** `/api/v1/teams` — Get all teams
+- **POST** `/api/v1/teams` — Create a new team (Manager only)
+- **GET** `/api/v1/teams/:id` — Get a team by ID
+- **PATCH** `/api/v1/teams/:id` — Update a team by ID
+- **DELETE** `/api/v1/teams/:id` — Delete a team by ID
+- **PATCH** `/api/v1/teams/:id/add-member` — Add a member to a team
