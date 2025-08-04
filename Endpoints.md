@@ -47,3 +47,8 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 * **GET** `/api/reviews/:id` - Get a review by ID
 * **PUT** `/api/reviews/:id` - Update a review by ID
 * **DELETE** `/api/reviews/:id` - Delete a review by ID
+
+#### Reports (Manager Only)
+*These endpoints are protected and restricted to the `manager` role.*
+* **GET** `/api/reports/team-report` - Get a report of all team members under the manager, including project stats and deadlines
+* **GET** `/api/reports/team-report/projects/:userId` - Get a list of projects for a specific team member

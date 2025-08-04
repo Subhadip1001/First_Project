@@ -1,9 +1,9 @@
 {
   "info": {
-    "_postman_id": "YOUR_COLLECTION_ID_HERE",
-    "name": "Backend Boilerplate API",
+    "_postman_id": "Test-Collection-ID",
+    "name": "FIRST_PROJECT",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "YOUR_EXPORTER_ID_HERE"
+    "_exporter_id": "Test-Exporter-ID"
   },
   "item": [
     {
@@ -24,7 +24,7 @@
               "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"passwordConfirm\": \"password123\",\n    \"role\": \"executive\",\n    \"refId\": \"executive\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/auth/signup",
+              "raw": "http://localhost:5000/api/auth/signup",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -32,55 +32,12 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "auth",
                 "signup"
               ]
             }
           },
-          "response": [
-            {
-              "name": "Successful Signup",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"passwordConfirm\": \"password123\",\n    \"role\": \"executive\",\n    \"refId\": \"executive\"\n}"
-                },
-                "url": {
-                  "raw": "http://localhost:5000/api/v1/auth/signup",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "5000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "auth",
-                    "signup"
-                  ]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                }
-              ],
-              "cookie": [],
-              "body": "{\"status\":\"success\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjBjYmZlNDQyMjE4MmFjN2RkNDYzMiIsImlhdCI6MTcyMjkyMTM0MiwiZXhwIjoxNzMxNjgyMTQyfQ.sB-l-9N-yJ8t_HnC2vJ5gK9hM4N-g-A-8N-N-w-A-W-Y\",\"data\":{\"user\":{\"_id\":\"66b0cbfe4422182ac7dd4632\",\"name\":\"Test User\",\"email\":\"test@example.com\",\"photo\":\"default.jpg\",\"role\":\"executive\",\"refId\":\"executive\",\"createdAt\":\"2025-08-03T17:15:42.532Z\",\"updatedAt\":\"2025-08-03T17:15:42.532Z\",\"__v\":0}}}"
-            }
-          ]
+          "response": []
         },
         {
           "name": "User Login",
@@ -110,7 +67,7 @@
               "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/auth/login",
+              "raw": "http://localhost:5000/api/auth/login",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -118,7 +75,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "auth",
                 "login"
               ]
@@ -132,7 +88,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/v1/auth/logout",
+              "raw": "http://localhost:5000/api/auth/logout",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -140,7 +96,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "auth",
                 "logout"
               ]
@@ -164,7 +119,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/me",
+              "raw": "http://localhost:5000/api/users/me",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -172,7 +127,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "me"
               ]
@@ -199,7 +153,7 @@
               "raw": "{\n    \"name\": \"Updated Test User\",\n    \"email\": \"updated_test@example.com\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/updateMe",
+              "raw": "http://localhost:5000/api/users/updateMe",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -207,7 +161,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "updateMe"
               ]
@@ -226,7 +179,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/deleteMe",
+              "raw": "http://localhost:5000/api/users/deleteMe",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -234,7 +187,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "deleteMe"
               ]
@@ -259,7 +211,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/users",
+              "raw": "http://localhost:5000/api/users",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -267,7 +219,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users"
               ]
             }
@@ -293,7 +244,7 @@
               "raw": "{\n    \"name\": \"New Team Lead\",\n    \"email\": \"teamlead@example.com\",\n    \"password\": \"password123\",\n    \"passwordConfirm\": \"password123\",\n    \"role\": \"team_lead\",\n    \"refId\": \"teamlead\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/users",
+              "raw": "http://localhost:5000/api/users",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -301,7 +252,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users"
               ]
             }
@@ -319,7 +269,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/{{user_id}}",
+              "raw": "http://localhost:5000/api/users/{{user_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -327,7 +277,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "{{user_id}}"
               ]
@@ -354,7 +303,7 @@
               "raw": "{\n    \"name\": \"Updated Name\",\n    \"role\": \"executive\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/{{user_id}}",
+              "raw": "http://localhost:5000/api/users/{{user_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -362,7 +311,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "{{user_id}}"
               ]
@@ -381,7 +329,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/users/{{user_id}}",
+              "raw": "http://localhost:5000/api/users/{{user_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -389,7 +337,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "users",
                 "{{user_id}}"
               ]
@@ -413,7 +360,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams",
+              "raw": "http://localhost:5000/api/teams",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -421,7 +368,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams"
               ]
             }
@@ -459,7 +405,7 @@
               "raw": "{\n    \"name\": \"Development Team\",\n    \"description\": \"Team responsible for backend development.\",\n    \"teamLeads\": [],\n    \"executives\": []\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams",
+              "raw": "http://localhost:5000/api/teams",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -467,7 +413,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams"
               ]
             }
@@ -485,7 +430,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams/{{team_id}}",
+              "raw": "http://localhost:5000/api/teams/{{team_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -493,7 +438,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams",
                 "{{team_id}}"
               ]
@@ -520,7 +464,7 @@
               "raw": "{\n    \"description\": \"Updated description for Development Team\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams/{{team_id}}",
+              "raw": "http://localhost:5000/api/teams/{{team_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -528,7 +472,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams",
                 "{{team_id}}"
               ]
@@ -555,7 +498,7 @@
               "raw": "{\n    \"userId\": \"{{user_id}}\",\n    \"role\": \"executive\"\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams/{{team_id}}/add-member",
+              "raw": "http://localhost:5000/api/teams/{{team_id}}/add-member",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -563,7 +506,6 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams",
                 "{{team_id}}",
                 "add-member"
@@ -583,7 +525,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/v1/teams/{{team_id}}",
+              "raw": "http://localhost:5000/api/teams/{{team_id}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -591,9 +533,341 @@
               "port": "5000",
               "path": [
                 "api",
-                "v1",
                 "teams",
                 "{{team_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "description": "This endpoint requires an authenticated user with the 'manager' role.",
+      "item": [
+        {
+          "name": "Get Dashboard Stats (Manager Only)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/dashboard/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "dashboard",
+                "stats"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "description": "These endpoints require an authenticated user with the 'manager' role.",
+      "item": [
+        {
+          "name": "Create Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"project_id\", jsonData.data.data._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"companyName\": \"New Project Co.\",\n    \"invoiceNumber\": \"INV-12345\",\n    \"clientName\": \"Jane Doe\",\n    \"startDate\": \"2025-08-01T00:00:00.000Z\",\n    \"serviceName\": \"Video Editing\",\n    \"projectValue\": 1500,\n    \"status\": \"Pending\",\n    \"assignedTo\": \"{{user_id}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/projects",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/projects",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/projects/{{project_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Project by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"Completed\",\n    \"endDate\": \"2025-08-05T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/projects/{{project_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Project by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/projects/{{project_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "description": "These endpoints do not have explicit role restrictions in the provided code.",
+      "item": [
+        {
+          "name": "Create Review",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"review_id\", jsonData._id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"clientName\": \"John Smith\",\n    \"contactNo\": \"123-456-7890\",\n    \"startDate\": \"2025-07-01T00:00:00.000Z\",\n    \"serviceName\": \"Graphic Design\",\n    \"designation\": \"CEO\",\n    \"emailId\": \"john.smith@example.com\",\n    \"endDate\": \"2025-07-31T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Review by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/{{review_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "{{review_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Review by ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"clientName\": \"John Smith Updated\",\n    \"contactNo\": \"987-654-3210\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/{{review_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "{{review_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Review by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/reviews/{{review_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reviews",
+                "{{review_id}}"
               ]
             }
           },
@@ -640,6 +914,18 @@
       "value": "",
       "type": "string",
       "description": "Stores the ID of a created team"
+    },
+    {
+      "key": "project_id",
+      "value": "",
+      "type": "string",
+      "description": "Stores the ID of a created project"
+    },
+    {
+      "key": "review_id",
+      "value": "",
+      "type": "string",
+      "description": "Stores the ID of a created review"
     }
   ]
 }
