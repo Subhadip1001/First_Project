@@ -107,7 +107,7 @@ exports.addTeamMember = catchAsync(async (req, res, next) => {
     return next(new AppError("No team found with that ID", 404))
   }
 
-  // Only the team manager can add members
+  // Only the team lead can add members
   if (team.manager._id.toString() !== req.user._id.toString()) {
     return next(new AppError("Only team managers can add members", 403))
   }
