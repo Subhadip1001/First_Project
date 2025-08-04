@@ -16,6 +16,7 @@ const userRouter = require("./routes/userRoutes")
 const teamRouter = require("./routes/teamRoutes")
 const projectRouter = require("./routes/projectRoutes");
 const dashboardRouter = require("./routes/dashboardRoutes");
+const reviewRouter = require("./routes/reviewRoutes");
 
 const app = express()
 
@@ -43,8 +44,8 @@ const limiter = rateLimit({
 })
 app.use("/api", limiter)
 
-app.use(express.json({ limit: "10kb" }))
-app.use(express.urlencoded({ extended: true, limit: "10kb" }))
+app.use(express.json({ limit: "50kb" }))
+app.use(express.urlencoded({ extended: true, limit: "50kb" }))
 app.use(cookieParser())
 
 app.use(mongoSanitize())
@@ -69,6 +70,7 @@ app.use("/api/users", userRouter)
 app.use("/api/teams", teamRouter)
 app.use("/api/projects", projectRouter)
 app.use("/api/dashboard", dashboardRouter)
+app.use('/api/reviews', reviewRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
