@@ -1,9 +1,9 @@
 {
   "info": {
-    "_postman_id": "Test-Collection-ID",
-    "name": "FIRST_PROJECT",
+    "_postman_id": "YOUR_COLLECTION_ID_HERE",
+    "name": "Backend Boilerplate API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "Test-Exporter-ID"
+    "_exporter_id": "YOUR_EXPORTER_ID_HERE"
   },
   "item": [
     {
@@ -543,11 +543,11 @@
       ]
     },
     {
-      "name": "Dashboard",
-      "description": "This endpoint requires an authenticated user with the 'manager' role.",
+      "name": "Dashboard (Manager Only)",
+      "description": "These endpoints require a user with 'manager' role to be authenticated.",
       "item": [
         {
-          "name": "Get Dashboard Stats (Manager Only)",
+          "name": "Get Dashboard Stats",
           "request": {
             "method": "GET",
             "header": [
@@ -575,8 +575,8 @@
       ]
     },
     {
-      "name": "Projects",
-      "description": "These endpoints require an authenticated user with the 'manager' role.",
+      "name": "Projects (Manager Only)",
+      "description": "These endpoints require a user with 'manager' role to be authenticated.",
       "item": [
         {
           "name": "Create Project",
@@ -868,6 +868,66 @@
                 "api",
                 "reviews",
                 "{{review_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports (Manager Only)",
+      "description": "These endpoints are protected and restricted to the 'manager' role.",
+      "item": [
+        {
+          "name": "Get Team Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/reports/team-report",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reports",
+                "team-report"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects for a Team Member",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/reports/team-report/projects/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "reports",
+                "team-report",
+                "projects",
+                "{{user_id}}"
               ]
             }
           },
