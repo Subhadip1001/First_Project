@@ -1,9 +1,10 @@
 {
   "info": {
     "_postman_id": "YOUR_COLLECTION_ID_HERE",
-    "name": "Backend Boilerplate API",
+    "name": "Test Backend API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "YOUR_EXPORTER_ID_HERE"
+    "_exporter_id": "YOUR_EXPORTER_ID_HERE",
+    "description": "This Postman collection provides a complete and organized set of API endpoints for a backend built with Express.js, MongoDB, and JWT authentication. It is an essential tool for developers to test and interact with the server's functionalities.\n\n### Key Features of the Backend:\n\n- **JWT Authentication**: Securely manage user sessions with endpoints for `signup`, `login`, and `logout` using JSON Web Tokens.\n- **Role-Based Access Control**: Verify permissions for different user roles—Manager, Team Lead, and Executive—and test role-specific endpoints.\n- **Comprehensive Data Management**: The collection includes full CRUD (Create, Read, Update, Delete) functionality for core models like `Users`, `Teams`, `Projects`, and `Reviews`, allowing for a thorough test of data persistence and manipulation.\n- **Dashboard & Reporting**: Test dedicated endpoints for fetching dashboard statistics for managers, as well as dynamic team reports that aggregate project data for individual team members.\n- **Security Measures**: The backend is hardened with various security features, including password hashing with `bcryptjs`, rate limiting to prevent abuse, and data sanitization to protect against common web vulnerabilities.\n\n### Getting Started:\n\n1.  Import this collection into Postman.\n2.  Set up your environment variables for `jwt_token`, `user_id`, `team_id`, and others. The `login`, `create user`, and `create team` requests are configured with pre-request scripts to automatically capture and set these variables for a seamless testing workflow.\n3.  Follow the structured folders to test endpoints in a logical sequence, starting with Authentication and moving to protected resources."
   },
   "item": [
     {
