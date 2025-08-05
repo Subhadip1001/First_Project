@@ -64,7 +64,6 @@ exports.createUser = catchAsync(async (req, res, next) => {
     return next(new AppError("Only managers can create new users", 403))
   }
 
-  // Validate reference ID
   const validRefIds = {
     manager: process.env.MANAGER_SIGNUP_REFID,
     team_lead: process.env.TEAM_LEAD_SIGNUP_REFID,

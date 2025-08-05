@@ -14,7 +14,6 @@ const taskSchema = new mongoose.Schema({
     enum: ['Pending', 'In Progress', 'Completed'],
     default: 'Pending'
   },
-  // Add assignedTo field to the taskSchema to support task-level assignment
   assignedTo: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
@@ -61,11 +60,6 @@ const projectSchema = new mongoose.Schema(
       default: "Pending",
     },
     tasks: [taskSchema],
-    // REMOVE this field from the main projectSchema
-    // assignedTo: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "User",
-    // },
     team: {
       type: mongoose.Schema.ObjectId,
       ref: "Team",
@@ -87,7 +81,6 @@ projectSchema.pre(/^find/, function(next) {
         path: 'manager',
         select: 'name email'
     })
-    // Update the population to include the new task-level assignedTo field
     .populate({
         path: 'tasks.assignedTo',
         select: 'name email role'

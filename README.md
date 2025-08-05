@@ -1,6 +1,4 @@
-# Backend Boilerplate with JWT Auth and MongoDB
-
-A complete backend boilerplate built with Express.js, MongoDB, and JWT authentication, featuring role-based access control.
+# Backend JWT Auth and MongoDB
 
 ## Features
 
@@ -16,26 +14,46 @@ A complete backend boilerplate built with Express.js, MongoDB, and JWT authentic
 ```
 project-root/
 ├── backend/
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── userController.js
-│   │   ├── teamController.js
-│   │   └── errorController.js
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Team.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── userRoutes.js
-│   │   └── teamRoutes.js
-│   ├── utils/
-│   │   ├── appError.js
-│   │   └── catchAsync.js
-│   ├── config/
-│   │   └── database.js
-│   ├── app.js
-│   ├── server.js
-│   └── package.json
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── userController.js
+│   │   ├── teamController.js
+│   │   ├── projectController.js
+│   │   ├── dashboardController.js
+│   │   ├── reviewController.js
+│   │   ├── reportController.js
+│   │   ├── salaryController.js
+│   │   ├── receivedDataController.js
+│   │   ├── tlReviewController.js
+│   │   ├── executiveController.js
+│   │   └── errorController.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Team.js
+│   │   ├── Project.js
+│   │   ├── Review.js
+│   │   ├── ReceivedData.js
+│   │   └── TLReview.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── userRoutes.js
+│   │   ├── teamRoutes.js
+│   │   ├── projectRoutes.js
+│   │   ├── dashboardRoutes.js
+│   │   ├── reviewRoutes.js
+│   │   ├── reportRoutes.js
+│   │   ├── salaryRoutes.js
+│   │   ├── receivedDataRoutes.js
+│   │   ├── tlReviewRoutes.js
+│   │   └── executiveRoutes.js
+│   ├── utils/
+│   │   ├── appError.js
+│   │   └── catchAsync.js
+│   ├── config/
+│   │   └── database.js
+│   ├── app.js
+│   ├── server.js
+│   └── package.json
 ├── .env
 └── README.md
 ```
@@ -73,32 +91,32 @@ npm run dev
 
 ### Authentication
 
-  - `POST /api/v1/auth/signup` - User registration
-  - `POST /api/v1/auth/login` - User login
-  - `GET /api/v1/auth/logout` - User logout
+  - `POST /api/auth/signup` - User registration
+  - `POST /api/auth/login` - User login
+  - `GET /api/auth/logout` - User logout
 
 ### Users (Protected)
 
-  - `GET /api/v1/users/me` - Get current user
-  - `PATCH /api/v1/users/updateMe` - Update current user
-  - `DELETE /api/v1/users/deleteMe` - Delete current user
+  - `GET /api/users/me` - Get current user
+  - `PATCH /api/users/updateMe` - Update current user
+  - `DELETE /api/users/deleteMe` - Delete current user
 
 ### Users (Manager Only)
 
-  - `GET /api/v1/users` - Get all users
-  - `POST /api/v1/users` - Create new user
-  - `GET /api/v1/users/:id` - Get user by ID
-  - `PATCH /api/v1/users/:id` - Update user
-  - `DELETE /api/v1/users/:id` - Delete user
+  - `GET /api/users` - Get all users
+  - `POST /api/users` - Create new user
+  - `GET /api/users/:id` - Get user by ID
+  - `PATCH /api/users/:id` - Update user
+  - `DELETE /api/users/:id` - Delete user
 
 ### Teams (Protected)
 
-  - `GET /api/v1/teams` - Get all teams
-  - `POST /api/v1/teams` - Create team (Manager only)
-  - `GET /api/v1/teams/:id` - Get team by ID
-  - `PATCH /api/v1/teams/:id` - Update team
-  - `DELETE /api/v1/teams/:id` - Delete team
-  - `PATCH /api/v1/teams/:id/add-member` - Add team member
+  - `GET /api/teams` - Get all teams
+  - `POST /api/teams` - Create team (Manager only)
+  - `GET /api/teams/:id` - Get team by ID
+  - `PATCH /api/teams/:id` - Update team
+  - `DELETE /api/teams/:id` - Delete team
+  - `PATCH /api/teams/:id/add-member` - Add team member
 
 ## Role-based Access
 
@@ -106,7 +124,7 @@ npm run dev
 
   - **Manager**: Use `manager`
   - **Team Lead**: Use `teamlead`
-  - **Executive**: Use `executive`
+  - **Employee/Executive**: Use `executive`
 
 ### Permissions:
 

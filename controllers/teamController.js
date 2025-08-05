@@ -4,7 +4,15 @@ const catchAsync = require("../utils/catchAsync")
 const AppError = require("../utils/appError")
 
 exports.getAllTeams = catchAsync(async (req, res, next) => {
-  const teams = await Team.find()
+  let teams
+
+  if (req.user.role === "manager") {
+    teams = await Team.find()
+  } else {
+    teams = await Team.find({
+      $or: [{ teamLeads: req.user.id }, { executives: req.user.id }],
+    })
+  }
 
   res.status(200).json({
     status: "success",
@@ -44,6 +52,13 @@ exports.getTeam = catchAsync(async (req, res, next) => {
 
   if (!team) {
     return next(new AppError("No team found with that ID", 404))
+  }
+
+  const isManager = team.manager._id.toString() === req.user._id.toString()
+  const isTeamLead = team.teamLeads.some(lead => lead._id.toString() === req.user._id.toString())
+
+  if (!isManager && !isTeamLead) {
+    return next(new AppError("You do not have permission to view this team's details", 403))
   }
 
   res.status(200).json({

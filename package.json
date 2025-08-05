@@ -1,7 +1,7 @@
 {
-  "name": "backend-boilerplate",
+  "name": "management-backend",
   "version": "1.0.0",
-  "description": "Backend boilerplate with JWT auth and MongoDB",
+  "description": "Backend JWT auth and MongoDB",
   "main": "server.js",
   "private": true,
   "scripts": {

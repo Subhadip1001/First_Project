@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser")
 const compression = require("compression")
 const cors = require("cors")
 
+// Routes
 const AppError = require("./utils/appError")
 const globalErrorHandler = require("./controllers/errorController")
 const authRouter = require("./routes/authRoutes")
@@ -21,6 +22,7 @@ const reportRouter = require("./routes/reportRoutes");
 const salaryRouter = require("./routes/salaryRoutes");
 const receivedDataRouter = require("./routes/receivedDataRoutes");
 const tlReviewRouter = require('./routes/tlReviewRoutes');
+const executiveRouter = require('./routes/executiveRoutes');
 
 const app = express()
 
@@ -79,6 +81,7 @@ app.use("/api/reports", reportRouter);
 app.use("/api/salaries", salaryRouter);
 app.use("/api/received-data", receivedDataRouter);
 app.use('/api/tl/reviews', tlReviewRouter);
+app.use('/api/executive', executiveRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))

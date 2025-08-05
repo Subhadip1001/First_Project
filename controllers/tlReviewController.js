@@ -2,7 +2,6 @@ const TLReview = require('../models/TLReview');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-// Get all reviews with optional month/day filter
 exports.getFilteredReviews = catchAsync(async (req, res, next) => {
   const { month, day } = req.query;
 
@@ -22,7 +21,6 @@ exports.getFilteredReviews = catchAsync(async (req, res, next) => {
       };
     }
 
-    // Use aggregation to filter by expressions
     const reviews = await TLReview.aggregate([
       { $match: filter.date }
     ]);
@@ -34,7 +32,6 @@ exports.getFilteredReviews = catchAsync(async (req, res, next) => {
     });
   }
 
-  // No filter – return all
   const reviews = await TLReview.find();
 
   res.status(200).json({

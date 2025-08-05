@@ -22,7 +22,7 @@ const tlReviewSchema = new mongoose.Schema({
     default: Date.now
   },
   projectFile: {
-    type: String // could be a file name or URL
+    type: String
   }
 });
 

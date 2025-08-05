@@ -1,7 +1,5 @@
 ### API Endpoints
 
-Here is a complete list of the API endpoints for the backend, based on the provided files.
-
 #### Authentication
 * **POST** `/api/auth/signup` - User registration
 * **POST** `/api/auth/login` - User login
@@ -80,3 +78,9 @@ Description: Updates a "received data" entry.
 
 * **DELETE** /api/received-data/:id
 Description: Deletes a "received data" entry.
+
+## Team Lead Reviews 
+
+* **POST** /api/tl/reviews
+* **GET** /api/tl/reviews
+* **GET** /api/tl/reviews/:id

@@ -7,7 +7,6 @@ const AppError = require("../utils/appError");
 exports.getTeamReport = catchAsync(async (req, res, next) => {
   const managerId = req.user.id;
 
-  // 1. Find all teams managed by the current user
   const teams = await Team.find({ manager: managerId }).populate({
     path: 'teamLeads executives',
     select: 'name role'
@@ -17,17 +16,14 @@ exports.getTeamReport = catchAsync(async (req, res, next) => {
     return res.status(200).json({ status: "success", data: { teamReport: [] } });
   }
 
-  // 2. Aggregate all members from all teams managed by the manager
   const teamMembers = [];
   teams.forEach(team => {
       team.teamLeads.forEach(member => teamMembers.push(member));
       team.executives.forEach(member => teamMembers.push(member));
   });
 
-  // Remove duplicates in case a user is in multiple teams
   const uniqueMemberIds = [...new Set(teamMembers.map(member => member._id.toString()))];
 
-  // 3. For each unique member, count their projects based on status
   const reportData = await Promise.all(uniqueMemberIds.map(async (memberId) => {
     const member = teamMembers.find(m => m._id.toString() === memberId);
 
