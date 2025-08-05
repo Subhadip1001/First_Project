@@ -2,6 +2,29 @@ const crypto = require("crypto")
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 
+const salaryPaymentSchema = new mongoose.Schema({
+  amount: {
+    type: Number,
+    required: [true, 'Salary amount is required.']
+  },
+  month: {
+    type: String,
+    required: [true, 'Salary month is required.']
+  },
+  year: {
+    type: Number,
+    required: [true, 'Salary year is required.']
+  },
+  paymentDate: {
+    type: Date,
+    default: Date.now
+  },
+  paidBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
+});
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -55,6 +78,11 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "User",
     },
+    baseSalary: {
+      type: Number,
+      default: 0
+    },
+    salaryHistory: [salaryPaymentSchema]
   },
   {
     timestamps: true,

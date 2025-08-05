@@ -53,3 +53,29 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 *These endpoints are protected and restricted to the `manager` role.*
 * **GET** `/api/reports/team-report` - Get a report of all team members under the manager, including project stats and deadlines
 * **GET** `/api/reports/team-report/projects/:userId` - Get a list of projects for a specific team member
+
+
+### Salary API
+* **GET** /api/salaries
+Description: Retrieves a list of all team members and their latest salary information for the manager's report view.
+
+* **POST** /api/salaries/:userId
+Description: Adds a new salary payment record for a specific user.
+Body: { "amount": 4000, "month": "August", "year": 2025 }
+
+### Received Data API
+* **POST** /api/received-data
+Description: Creates a new "received data" entry.
+Body: JSON object with details like companyName, invoiceNumber, clientName, etc.
+
+* **GET** /api/received-data
+Description: Retrieves all data received by the manager.
+
+* **GET** /api/received-data/:id
+Description: Retrieves a single "received data" entry by its ID.
+
+* **PATCH** /api/received-data/:id
+Description: Updates a "received data" entry.
+
+* **DELETE** /api/received-data/:id
+Description: Deletes a "received data" entry.
