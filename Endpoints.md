@@ -37,6 +37,7 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 *These endpoints are protected and restricted to the `manager` and `team_lead` roles.*
 * **POST** `/api/projects` - Create a new project
 * **GET** `/api/projects` - Get all projects
+* **GET** `/api/projects/payout` - Get a list of payout for each project
 * **GET** `/api/projects/:id` - Get a project by ID
 * **PATCH** `/api/projects/:id` - Update a project by ID
 * **DELETE** `/api/projects/:id` - Delete a project by ID (Manager only)
@@ -54,7 +55,6 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 *These endpoints are protected and restricted to the `manager` role.*
 * **GET** `/api/reports/team-report` - Get a report of all team members under the manager, including project stats and deadlines
 * **GET** `/api/reports/team-report/projects/:userId` - Get a list of projects for a specific team member
-
 
 ### Salary API
 * **GET** /api/salaries

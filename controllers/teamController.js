@@ -100,39 +100,46 @@ exports.deleteTeam = catchAsync(async (req, res, next) => {
 })
 
 exports.addTeamMember = catchAsync(async (req, res, next) => {
-  const { userId, role } = req.body
-  const team = await Team.findById(req.params.id)
+  const { userId, role } = req.body;
+  const team = await Team.findById(req.params.id);
 
   if (!team) {
-    return next(new AppError("No team found with that ID", 404))
+    return next(new AppError("No team found with that ID", 404));
   }
 
-  // Only the team lead can add members
-  if (team.manager._id.toString() !== req.user._id.toString()) {
-    return next(new AppError("Only team managers can add members", 403))
+  const isManager = team.manager.toString() === req.user._id.toString();
+  const isTeamLead = team.teamLeads.some(
+    (leadId) => leadId.toString() === req.user._id.toString()
+  );
+
+  // Only the team manager or team leads can add members
+  if (!isManager && !isTeamLead) {
+    return next(new AppError("Only team managers or team leads can add members", 403));
   }
 
-  const user = await User.findById(userId)
+  const user = await User.findById(userId);
   if (!user) {
-    return next(new AppError("User not found", 404))
+    return next(new AppError("User not found", 404));
   }
 
   if (role === "team_lead") {
     if (!team.teamLeads.includes(userId)) {
-      team.teamLeads.push(userId)
+      team.teamLeads.push(userId);
     }
   } else if (role === "executive") {
     if (!team.executives.includes(userId)) {
-      team.executives.push(userId)
+      team.executives.push(userId);
     }
+  } else {
+    return next(new AppError("Invalid role specified", 400));
   }
 
-  await team.save()
+  await team.save();
 
   res.status(200).json({
     status: "success",
     data: {
       team,
     },
-  })
-})
+  });
+});

@@ -39,6 +39,24 @@ exports.getAllProjects = catchAsync(async (req, res, next) => {
     });
 });
 
+exports.getProjectPayout = catchAsync(async (req, res, next) => {
+    const projects = await Project.find({ manager: req.user.id });
+    const payouts = projects.map(project => ({
+        companyName: project.companyName,
+        invoiceNumber: project.invoiceNumber,
+        serviceName: project.serviceName,
+        ammount: project.projectValue,
+        endDate: project.endDate,
+    }));
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            payouts
+        }
+    });
+});
+
 
 // This function handles getting a single project
 exports.getProject = catchAsync(async (req, res, next) => {

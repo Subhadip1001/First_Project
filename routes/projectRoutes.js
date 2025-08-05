@@ -13,6 +13,10 @@ router
     .get(authController.restrictTo('manager', 'team_lead'), projectController.getAllProjects)
     .post(authController.restrictTo('manager', 'team_lead'), projectController.createProject);
 
+router
+    .route('/payout')
+    .get(authController.restrictTo('manager'), projectController.getProjectPayout);
+
 // Routes for specific projects.
 router
     .route('/:id')
