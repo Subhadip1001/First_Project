@@ -34,12 +34,13 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 * **GET** `/api/dashboard/stats` - Get dashboard statistics (Manager only)
 
 #### Projects
-*These endpoints are protected and restricted to the `manager` role.*
+*These endpoints are protected and restricted to the `manager` and `team_lead` roles.*
 * **POST** `/api/projects` - Create a new project
 * **GET** `/api/projects` - Get all projects
 * **GET** `/api/projects/:id` - Get a project by ID
 * **PATCH** `/api/projects/:id` - Update a project by ID
-* **DELETE** `/api/projects/:id` - Delete a project by ID
+* **DELETE** `/api/projects/:id` - Delete a project by ID (Manager only)
+* **PATCH** `/api/projects/:id/assign-task` - Assign a task to a user within a project
 
 #### Reviews (Manager Only)
 *These endpoints require an authenticated user with the `manager` role.*

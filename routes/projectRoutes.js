@@ -4,19 +4,27 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-// routes are protecte to manager
+// Protect all routes
 router.use(authController.protect);
-router.use(authController.restrictTo('manager'));
 
+// Routes for creating and getting projects. Accessible to managers and team leads.
 router
     .route('/')
-    .get(projectController.getAllProjects)
-    .post(projectController.createProject);
+    .get(authController.restrictTo('manager', 'team_lead'), projectController.getAllProjects)
+    .post(authController.restrictTo('manager', 'team_lead'), projectController.createProject);
 
+// Routes for specific projects.
 router
     .route('/:id')
-    .get(projectController.getProject)
-    .patch(projectController.updateProject)
-    .delete(projectController.deleteProject);
+    .get(authController.restrictTo('manager', 'team_lead'), projectController.getProject)
+    .patch(authController.restrictTo('manager', 'team_lead'), projectController.updateProject)
+    .delete(authController.restrictTo('manager'), projectController.deleteProject); // Only managers can delete projects
+
+// New route for assigning tasks within a project
+router.patch(
+  '/:id/assign-task',
+  authController.restrictTo('manager', 'team_lead'),
+  projectController.assignTask
+);
 
 module.exports = router;
