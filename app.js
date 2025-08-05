@@ -20,6 +20,7 @@ const reviewRouter = require("./routes/reviewRoutes");
 const reportRouter = require("./routes/reportRoutes");
 const salaryRouter = require("./routes/salaryRoutes");
 const receivedDataRouter = require("./routes/receivedDataRoutes");
+const tlReviewRouter = require('./routes/tlReviewRoutes');
 
 const app = express()
 
@@ -77,6 +78,7 @@ app.use('/api/reviews', reviewRouter);
 app.use("/api/reports", reportRouter);
 app.use("/api/salaries", salaryRouter);
 app.use("/api/received-data", receivedDataRouter);
+app.use('/api/tl/reviews', tlReviewRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
