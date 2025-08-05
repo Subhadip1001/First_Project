@@ -576,8 +576,8 @@
       ]
     },
     {
-      "name": "Projects (Manager Only)",
-      "description": "These endpoints require a user with 'manager' role to be authenticated.",
+      "name": "Projects",
+      "description": "These endpoints are protected and restricted to the `manager` and `team_lead` roles.",
       "item": [
         {
           "name": "Create Project",
@@ -710,7 +710,7 @@
           "response": []
         },
         {
-          "name": "Delete Project by ID",
+          "name": "Delete Project by ID (Manager only)",
           "request": {
             "method": "DELETE",
             "header": [
@@ -730,6 +730,41 @@
                 "api",
                 "projects",
                 "{{project_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Assign Task to User in Project",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"{{user_id}}\",\n    \"task\": \"Design Logo\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/projects/{{project_id}}/assign-task",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects",
+                "{{project_id}}",
+                "assign-task"
               ]
             }
           },
