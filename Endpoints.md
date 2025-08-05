@@ -41,11 +41,12 @@ Here is a complete list of the API endpoints for the backend, based on the provi
 * **PATCH** `/api/projects/:id` - Update a project by ID
 * **DELETE** `/api/projects/:id` - Delete a project by ID
 
-#### Reviews
+#### Reviews (Manager Only)
+*These endpoints require an authenticated user with the `manager` role.*
 * **POST** `/api/reviews` - Create a new review
 * **GET** `/api/reviews` - Get all reviews
 * **GET** `/api/reviews/:id` - Get a review by ID
-* **PUT** `/api/reviews/:id` - Update a review by ID
+* **PATCH** `/api/reviews/:id` - Update a review by ID
 * **DELETE** `/api/reviews/:id` - Delete a review by ID
 
 #### Reports (Manager Only)
