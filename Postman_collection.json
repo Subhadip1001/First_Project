@@ -36,7 +36,8 @@
                 "auth",
                 "signup"
               ]
-            }
+            },
+            "description": "Handles user registration for all roles using a reference ID."
           },
           "response": []
         },
@@ -79,7 +80,8 @@
                 "auth",
                 "login"
               ]
-            }
+            },
+            "description": "Authenticates a user and returns a JWT token. The token is automatically saved as an environment variable."
           },
           "response": []
         },
@@ -100,7 +102,8 @@
                 "auth",
                 "logout"
               ]
-            }
+            },
+            "description": "Logs out the current user by clearing the JWT cookie."
           },
           "response": []
         }
@@ -108,6 +111,7 @@
     },
     {
       "name": "Users (Protected)",
+      "description": "These endpoints require an authenticated user.",
       "item": [
         {
           "name": "Get Current User (Me)",
@@ -131,7 +135,8 @@
                 "users",
                 "me"
               ]
-            }
+            },
+            "description": "Retrieves the profile of the currently authenticated user."
           },
           "response": []
         },
@@ -165,7 +170,8 @@
                 "users",
                 "updateMe"
               ]
-            }
+            },
+            "description": "Allows the currently authenticated user to update their own profile information."
           },
           "response": []
         },
@@ -191,7 +197,8 @@
                 "users",
                 "deleteMe"
               ]
-            }
+            },
+            "description": "Deactivates the currently authenticated user's account."
           },
           "response": []
         }
@@ -222,7 +229,8 @@
                 "api",
                 "users"
               ]
-            }
+            },
+            "description": "Retrieves a list of all users in the system. Accessible only by managers."
           },
           "response": []
         },
@@ -255,7 +263,8 @@
                 "api",
                 "users"
               ]
-            }
+            },
+            "description": "Creates a new user with a specified role and reference ID. Accessible only by managers."
           },
           "response": []
         },
@@ -281,7 +290,8 @@
                 "users",
                 "{{user_id}}"
               ]
-            }
+            },
+            "description": "Retrieves a specific user's details by their ID. Accessible only by managers."
           },
           "response": []
         },
@@ -315,7 +325,8 @@
                 "users",
                 "{{user_id}}"
               ]
-            }
+            },
+            "description": "Updates a user's details by their ID. Accessible only by managers."
           },
           "response": []
         },
@@ -341,7 +352,8 @@
                 "users",
                 "{{user_id}}"
               ]
-            }
+            },
+            "description": "Deletes a user by their ID. Accessible only by managers."
           },
           "response": []
         }
@@ -349,6 +361,7 @@
     },
     {
       "name": "Teams (Protected)",
+      "description": "These endpoints require an authenticated user.",
       "item": [
         {
           "name": "Get All Teams",
@@ -371,7 +384,8 @@
                 "api",
                 "teams"
               ]
-            }
+            },
+            "description": "Retrieves a list of all teams. Accessible by all authenticated users."
           },
           "response": []
         },
@@ -416,7 +430,8 @@
                 "api",
                 "teams"
               ]
-            }
+            },
+            "description": "Creates a new team. This action is restricted to the 'manager' role."
           },
           "response": []
         },
@@ -442,7 +457,8 @@
                 "teams",
                 "{{team_id}}"
               ]
-            }
+            },
+            "description": "Retrieves a specific team's details by its ID."
           },
           "response": []
         },
@@ -476,7 +492,8 @@
                 "teams",
                 "{{team_id}}"
               ]
-            }
+            },
+            "description": "Updates a team's details by its ID. This action is restricted to the 'manager' role."
           },
           "response": []
         },
@@ -511,7 +528,8 @@
                 "{{team_id}}",
                 "add-member"
               ]
-            }
+            },
+            "description": "Adds a new member to a team. Accessible by managers and team leads."
           },
           "response": []
         },
@@ -537,15 +555,16 @@
                 "teams",
                 "{{team_id}}"
               ]
-            }
+            },
+            "description": "Deletes a team by its ID. This action is restricted to the 'manager' role."
           },
           "response": []
         }
       ]
     },
     {
-      "name": "Dashboard (Manager Only)",
-      "description": "These endpoints require a user with 'manager' role to be authenticated.",
+      "name": "Dashboard (Manager and Team Lead)",
+      "description": "These endpoints require a user with 'manager' or 'team_lead' role to be authenticated.",
       "item": [
         {
           "name": "Get Dashboard Stats",
@@ -569,14 +588,15 @@
                 "dashboard",
                 "stats"
               ]
-            }
+            },
+            "description": "Retrieves dashboard statistics, including team member count and project statuses."
           },
           "response": []
         }
       ]
     },
     {
-      "name": "Projects",
+      "name": "Projects (Manager and Team Lead)",
       "description": "These endpoints are protected and restricted to the `manager` and `team_lead` roles.",
       "item": [
         {
@@ -620,7 +640,8 @@
                 "api",
                 "projects"
               ]
-            }
+            },
+            "description": "Creates a new project. The authenticated user (manager or team lead) is assigned as the project manager."
           },
           "response": []
         },
@@ -645,7 +666,35 @@
                 "api",
                 "projects"
               ]
-            }
+            },
+            "description": "Retrieves all projects managed by the authenticated user (manager or team lead)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project Payouts (Manager Only)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/projects/payout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "projects",
+                "payout"
+              ]
+            },
+            "description": "Retrieves a list of payout information for all projects. This endpoint is restricted to the 'manager' role."
           },
           "response": []
         },
@@ -671,7 +720,8 @@
                 "projects",
                 "{{project_id}}"
               ]
-            }
+            },
+            "description": "Retrieves a specific project by its ID. Accessible to managers and team leads who are the project manager."
           },
           "response": []
         },
@@ -705,7 +755,8 @@
                 "projects",
                 "{{project_id}}"
               ]
-            }
+            },
+            "description": "Updates a project's details by its ID. Accessible to managers and team leads who are the project manager."
           },
           "response": []
         },
@@ -731,7 +782,8 @@
                 "projects",
                 "{{project_id}}"
               ]
-            }
+            },
+            "description": "Deletes a project by its ID. This action is restricted to the 'manager' role."
           },
           "response": []
         },
@@ -751,7 +803,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"userId\": \"{{user_id}}\",\n    \"task\": \"Design Logo\"\n}"
+              "raw": "{\n    \"taskId\": \"{{task_id_here}}\",\n    \"assignedTo\": \"{{user_id}}\"\n}"
             },
             "url": {
               "raw": "http://localhost:5000/api/projects/{{project_id}}/assign-task",
@@ -766,36 +818,29 @@
                 "{{project_id}}",
                 "assign-task"
               ]
-            }
+            },
+            "description": "Assigns a task within a project to a specific user. This is a key part of the 'Transfer Projects' feature."
           },
           "response": []
         }
       ]
     },
     {
-      "name": "Reviews",
-      "description": "These endpoints do not have explicit role restrictions in the provided code.",
+      "name": "Reviews (Manager Only)",
+      "description": "These endpoints are protected and restricted to the `manager` role.",
       "item": [
         {
           "name": "Create Review",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "pm.environment.set(\"review_id\", jsonData._id);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
           "request": {
             "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
               }
             ],
             "body": {
@@ -813,7 +858,8 @@
                 "api",
                 "reviews"
               ]
-            }
+            },
+            "description": "Creates a new review. Restricted to the 'manager' role."
           },
           "response": []
         },
@@ -821,7 +867,12 @@
           "name": "Get All Reviews",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
             "url": {
               "raw": "http://localhost:5000/api/reviews",
               "protocol": "http",
@@ -833,7 +884,8 @@
                 "api",
                 "reviews"
               ]
-            }
+            },
+            "description": "Retrieves all reviews. Restricted to the 'manager' role."
           },
           "response": []
         },
@@ -841,7 +893,12 @@
           "name": "Get Review by ID",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
             "url": {
               "raw": "http://localhost:5000/api/reviews/{{review_id}}",
               "protocol": "http",
@@ -854,18 +911,23 @@
                 "reviews",
                 "{{review_id}}"
               ]
-            }
+            },
+            "description": "Retrieves a specific review by its ID. Restricted to the 'manager' role."
           },
           "response": []
         },
         {
           "name": "Update Review by ID",
           "request": {
-            "method": "PUT",
+            "method": "PATCH",
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
               }
             ],
             "body": {
@@ -884,7 +946,8 @@
                 "reviews",
                 "{{review_id}}"
               ]
-            }
+            },
+            "description": "Updates a review by its ID. This endpoint has a `PATCH` method in the routes, but a `PUT` method is often used for full replacements. The route file shows `PATCH`."
           },
           "response": []
         },
@@ -892,7 +955,12 @@
           "name": "Delete Review by ID",
           "request": {
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
             "url": {
               "raw": "http://localhost:5000/api/reviews/{{review_id}}",
               "protocol": "http",
@@ -905,7 +973,55 @@
                 "reviews",
                 "{{review_id}}"
               ]
-            }
+            },
+            "description": "Deletes a review by its ID. Restricted to the 'manager' role."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Team Lead Reviews",
+      "description": "These endpoints are for Team Leads to manage reviews. The route file restricts access to 'TL'.",
+      "item": [
+        {
+          "name": "Get Filtered Reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/tl/reviews?month=8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "tl",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "month",
+                  "value": "8",
+                  "description": "Filter by month (e.g., 1 for January, 8 for August)",
+                  "disabled": false
+                },
+                {
+                  "key": "day",
+                  "value": "3",
+                  "description": "Filter by day of the month",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieves reviews filtered by month or day. This endpoint is restricted to the 'TL' role."
           },
           "response": []
         }
@@ -937,7 +1053,8 @@
                 "reports",
                 "team-report"
               ]
-            }
+            },
+            "description": "Retrieves a report of all team members under the manager, including project statistics and deadlines."
           },
           "response": []
         },
@@ -965,7 +1082,413 @@
                 "projects",
                 "{{user_id}}"
               ]
-            }
+            },
+            "description": "Retrieves a list of projects for a specific team member, identified by `userId`."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Salary API (Manager Only)",
+      "description": "These endpoints are for managers to manage salaries.",
+      "item": [
+        {
+          "name": "Get All Salaries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/salaries",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "salaries"
+              ]
+            },
+            "description": "Retrieves a list of all team members and their latest salary information for a manager's report."
+          },
+          "response": []
+        },
+        {
+          "name": "Add Salary Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 4000,\n    \"month\": \"August\",\n    \"year\": 2025\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/salaries/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "salaries",
+                "{{user_id}}"
+              ]
+            },
+            "description": "Adds a new salary payment record for a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Received Data API (Manager Only)",
+      "description": "These endpoints allow managers to manage incoming client data.",
+      "item": [
+        {
+          "name": "Create Received Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"companyName\": \"Client Inc.\",\n    \"invoiceNumber\": \"INV-98765\",\n    \"clientName\": \"John Doe\",\n    \"serviceName\": \"Content Writing\",\n    \"tasks\": [\n        {\n            \"service\": \"Content Writing\",\n            \"status\": \"Pending\"\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/received-data",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "received-data"
+              ]
+            },
+            "description": "Creates a new 'received data' entry. Restricted to the 'manager' role."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Received Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/received-data",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "received-data"
+              ]
+            },
+            "description": "Retrieves all data received by the manager."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Received Data by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/received-data/{{received_data_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "received-data",
+                "{{received_data_id}}"
+              ]
+            },
+            "description": "Retrieves a single 'received data' entry by its ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Received Data by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"clientName\": \"Updated Client Name\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/received-data/{{received_data_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "received-data",
+                "{{received_data_id}}"
+              ]
+            },
+            "description": "Updates a 'received data' entry."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Received Data by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/received-data/{{received_data_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "received-data",
+                "{{received_data_id}}"
+              ]
+            },
+            "description": "Deletes a 'received data' entry."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Executive-Specific",
+      "description": "These endpoints are protected and restricted to the 'executive' role.",
+      "item": [
+        {
+          "name": "Get My Projects (Pending & Current)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/executive/my-projects",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "executive",
+                "my-projects"
+              ]
+            },
+            "description": "Retrieves the executive's pending and current projects."
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Completed Projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/executive/completed-projects",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "executive",
+                "completed-projects"
+              ]
+            },
+            "description": "Retrieves the executive's completed projects."
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Payout",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/executive/my-payout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "executive",
+                "my-payout"
+              ]
+            },
+            "description": "Retrieves the executive's own salary and payment history."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Team Lead Reviews (Protected)",
+      "description": "These endpoints are for Team Leads to manage reviews. The route file restricts access to 'TL' which is likely meant to be 'team_lead'.",
+      "item": [
+        {
+          "name": "Create TL Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"companyName\": \"New Project Co.\",\n    \"invoiceNo\": \"INV-12345\",\n    \"serviceName\": \"Graphic Design\",\n    \"comment\": \"Great work on this project.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/tl/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "tl",
+                "reviews"
+              ]
+            },
+            "description": "Creates a new review by a Team Lead."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All TL Reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/tl/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "tl",
+                "reviews"
+              ]
+            },
+            "description": "Retrieves all reviews accessible to the authenticated Team Lead."
+          },
+          "response": []
+        },
+        {
+          "name": "Get TL Review by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/tl/reviews/{{tl_review_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "tl",
+                "reviews",
+                "{{tl_review_id}}"
+              ]
+            },
+            "description": "Retrieves a specific review by its ID for a Team Lead."
           },
           "response": []
         }
@@ -987,7 +1510,26 @@
       "script": {
         "type": "text/javascript",
         "exec": [
-          ""
+          "var jsonData = pm.response.json();",
+          "// Set environment variables for dynamically created resources",
+          "if (jsonData.data && jsonData.data.data && jsonData.data.data._id) {",
+          "    pm.environment.set(\"project_id\", jsonData.data.data._id);",
+          "}",
+          "if (jsonData.data && jsonData.data.team && jsonData.data.team._id) {",
+          "    pm.environment.set(\"team_id\", jsonData.data.team._id);",
+          "}",
+          "if (jsonData.data && jsonData.data.user && jsonData.data.user._id) {",
+          "    pm.environment.set(\"user_id\", jsonData.data.user._id);",
+          "}",
+          "if (jsonData.data && jsonData.data.data && jsonData.data.data._id) {",
+          "    pm.environment.set(\"received_data_id\", jsonData.data.data._id);",
+          "}",
+          "if (jsonData.data && jsonData.data.review && jsonData.data.review._id) {",
+          "    pm.environment.set(\"review_id\", jsonData.data.review._id);",
+          "}",
+          "if (jsonData.data && jsonData.data.tlReview && jsonData.data.tlReview._id) {",
+          "    pm.environment.set(\"tl_review_id\", jsonData.data.tlReview._id);",
+          "}"
         ]
       }
     }
@@ -1022,6 +1564,18 @@
       "value": "",
       "type": "string",
       "description": "Stores the ID of a created review"
+    },
+    {
+      "key": "received_data_id",
+      "value": "",
+      "type": "string",
+      "description": "Stores the ID of a created received data entry"
+    },
+    {
+      "key": "tl_review_id",
+      "value": "",
+      "type": "string",
+      "description": "Stores the ID of a created team lead review"
     }
   ]
 }
